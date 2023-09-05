@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Search Results for "{{ keyword }}"</title>
+</head>
+<body>
+
+<h1>Search Results for "{{ keyword }}"</h1>
+
+{% for sentence, start_time, end_time in results %}
+<p>{{ sentence }} ({{ start_time }} - {{ end_time }})</p>
+{% endfor %}
+
+<a href="/search">Search again</a>
+
+</body>
+</html>
