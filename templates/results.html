@@ -7,9 +7,15 @@
 
 <h1>Search Results for "{{ keyword }}"</h1>
 
-{% for sentence, start_time, end_time in results %}
+{% for sentence, start_time, end_time in results %}wlrma
 <p>{{ sentence }} ({{ start_time }} - {{ end_time }})</p>
 {% endfor %}
+
+<video width="320" height="240" controls>
+  <source src="{{ url_for('static', filename=summary_filename) }}" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
 
 <a href="/search">Search again</a>
 

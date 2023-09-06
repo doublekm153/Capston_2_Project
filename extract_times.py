@@ -43,4 +43,3 @@ def extract_times():
 
         for sent, stime, etime in sentences:
             writer.writerow([sent, stime, etime])  
-

@@ -2,11 +2,12 @@ import boto3
 import os
 import uuid
 import tempfile
-from flask import Flask, request, redirect, url_for, render_template
+from flask import Flask, request, redirect, url_for, render_template, send_file
 import requests
 
 from extract_times import extract_times
 from search_keywords import search_keywords 
+from clip_video import create_summary
 
 app = Flask(__name__)
 
@@ -19,9 +20,19 @@ def search():
     if request.method == 'POST':
         keyword = request.form['keyword']
         results = search_keywords(keyword)
-        return render_template('results.html', keyword=keyword, results=results)
+        summary_filename = create_summary(keyword)
+
+        return render_template('results.html', keyword=keyword, results=results, summary_filename=summary_filename)
     else:
         return render_template('search.html')
+    
+@app.route('/summary', methods=['POST'])
+def summary():
+    if request.method == 'POST':
+        keyword = request.form['keyword']
+        create_summary(keyword)
+
+        return send_file("summary.mp4", as_attachment=True)
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -67,29 +78,3 @@ def upload_file():
     return redirect(url_for('index'))
 if __name__ == "__main__":
     app.run(debug=True)
-
-    """
-    print(status['TranscriptionJob']['Transcript']['TranscriptFileUri'])
-
-    path = status['TranscriptionJob']['Transcript']['TranscriptFileUri'].replace("https://s3.ap-northeast-2.amazonaws.com/", "")
-    bucket, key = path.split("/", 1)
-
-    # Download the transcript file to a local directory (e.g., './downloads/')
-    download_path = os.path.join('D:/nlp_stt/aws_json/', key)
-    
-     # Create directory if not exist.
-    os.makedirs(os.path.dirname(download_path), exist_ok=True)
-
-    s3.download_file(bucket, key, download_path)
-    
-    print(f"Downloaded transcription result to {download_path}")
-    
-
-
-
-
-    return redirect(url_for('index'))
-
-if __name__ == "__main__":
-    app.run(debug=True)
-"""
