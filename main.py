@@ -2,7 +2,7 @@ import boto3
 import os
 import uuid
 import tempfile
-from flask import Flask, request, redirect, url_for, render_template, send_file
+from flask import Flask, request, redirect, url_for, render_template, send_file, session
 import requests
 
 from extract_times import extract_times
@@ -10,6 +10,8 @@ from search_keywords import search_keywords
 from clip_video import create_summary
 
 app = Flask(__name__)
+app.secret_key = 'kyungmin'
+
 
 @app.route('/', methods=['GET'])
 def index():
@@ -42,6 +44,8 @@ def upload_file():
         with tempfile.NamedTemporaryFile(suffix=filename, delete=False) as f:
             file.save(f)
             filepath = f.name
+
+        session['video_filepath'] = filepath
 
         s3 = boto3.client('s3', region_name='ap-northeast-2')
         s3.upload_file(filepath, 'graduate1', filename)

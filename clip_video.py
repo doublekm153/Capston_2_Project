@@ -3,6 +3,8 @@ from moviepy.editor import concatenate_videoclips, VideoFileClip
 from search_keywords import search_keywords 
 from typing import List, Tuple
 import uuid
+import os
+from flask import session
 
 def clip_video(video_path, start_time, end_time, output_path):
     ffmpeg_extract_subclip(video_path, start_time, end_time, targetname=output_path)
@@ -15,13 +17,16 @@ def create_summary(keyword):
     
     for sentence, start_time, end_time in results:
         clip_name = f"{start_time}_{end_time}.mp4"
-        clip_video("original_video.mp4", float(start_time), float(end_time), clip_name)
+        clip_path = os.path.join("static", clip_name) 
+
+        clip_video(session.get('video_filepath'), float(start_time), float(end_time), clip_path)
         
-        clips.append(VideoFileClip(clip_name))
+        clips.append(VideoFileClip(clip_path))
         
     final_clip = concatenate_videoclips(clips)
     
     summary_filename = f"summary_{uuid.uuid4().hex}.mp4"
+    summary_path = os.path.join("static", summary_filename) 
 
     final_clip.write_videofile("static/summary.mp4")
 
