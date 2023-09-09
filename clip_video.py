@@ -1,3 +1,7 @@
+"""
+search_keywords 에서 반환된 시작 시간 및 종료 시간에 따라 원본 비디오에서 해당 부분을 잘라내어 새로운 클립들을 생성. 
+그 후 모든 클립들을 하나의 최종 요약 비디오로 합침. 
+"""
 from moviepy.video.io.ffmpeg_tools import ffmpeg_extract_subclip
 from moviepy.editor import concatenate_videoclips, VideoFileClip
 from search_keywords import search_keywords 
