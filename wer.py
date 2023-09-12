@@ -49,7 +49,7 @@ def calculate_wer(reference, hypothesis):
     return wer_score
 
 # AWS Transcribe 결과와 Ground Truth 읽기 
-with open(r'C:\Users\USER\Desktop\test\1\test_2.json', 'r', encoding='utf8') as f:
+with open(r'C:\Users\USER\Desktop\test\1\test_1.json', 'r', encoding='utf8') as f:
      transcribe_result_text=json.load(f)["results"]["transcripts"][0]["transcript"]
 
 with open(r'C:\Users\USER\Desktop\test\1\test_1.txt', 'r', encoding='utf8') as f:
