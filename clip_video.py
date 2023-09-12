@@ -32,6 +32,7 @@ def create_summary(keyword):
     summary_filename = f"summary_{uuid.uuid4().hex}.mp4"
     summary_path = os.path.join("static", summary_filename) 
 
+    final_clip.fps = 24
     final_clip.write_videofile("static/summary.mp4")
 
     return summary_filename
