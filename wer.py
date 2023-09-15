@@ -53,14 +53,14 @@ def calculate_wer(reference, hypothesis):
 
 # AWS Transcribe 결과와 Ground Truth 읽기 
 with open(r'C:\Users\USER\Desktop\test\1\test_1.json', 'r', encoding='utf8') as f:
-     transcribe_result_text=json.load(f)["results"]["transcripts"][0]["transcript"]
+     aws_transcribe_result_text=json.load(f)["results"]["transcripts"][0]["transcript"]
 
 with open(r'C:\Users\USER\Desktop\test\1\test_1.txt', 'r', encoding='utf8') as f:
      ground_truth_text=f.read()
 
 
 
-wer_score=calculate_wer(transcribe_result_text , ground_truth_text )
+wer_score=calculate_wer(aws_transcribe_result_text , ground_truth_text )
 
 # WER 결과 출력 
 print(f'WER: {wer_score}%')
