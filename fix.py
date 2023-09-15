@@ -1,4 +1,7 @@
-
+"""
+참조 스크립트(Ground Truth), 가설 스크립트(AWS transcribe) 사이에서 발생하는 오류를 검색. 
+오류가 발생한 단어들과 해당 단어의 시작 및 종료 시간 정보를 csv 파일로 저장. 
+"""
 import json
 import csv
 import string

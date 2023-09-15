@@ -1,5 +1,6 @@
 """
-aws transcribe 서비스를 이용해 변환된 음성 인식 결과 json 파일에서 문장과 해당 문장의 시작 시간 및 종료 시간 정보를 추출하여 csv 형태로 저장. 
+aws transcribe 서비스를 이용해 변환된 음성 인식 결과 json 파일에서 문장과 해당 문장의 시작 시간 및 종료 시간 정보를 추출. 
+그리고 해당 문장과 시간 정보를 csv 형태로 저장. 
 """
 import json
 import csv
