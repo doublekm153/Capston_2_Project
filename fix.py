@@ -44,7 +44,7 @@ def compare_and_correct_transcripts(reference_file, hypothesis_file, time_info_f
 
 # 사용
 compare_and_correct_transcripts(
-r"C:\Users\USER\Desktop\test\2\test_2.txt", 
-r"C:\Users\USER\Desktop\test\2\test_2.json", 
-r"C:\Users\USER\Desktop\\test\2\fix_2.csv"
+r"C:\Users\USER\Desktop\test\3\test_3.txt", 
+r"C:\Users\USER\Desktop\test\3\test_3.json", 
+r"C:\Users\USER\Desktop\\test\3\fix_3.csv"
 )
