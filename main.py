@@ -18,7 +18,7 @@ from search_keywords import search_keywords
 from clip_video import create_summary
 
 app = Flask(__name__)
-app.secret_key = 'kyungmin'
+app.secret_key = 'secret_key'
 
 
 @app.route('/', methods=['GET'])
