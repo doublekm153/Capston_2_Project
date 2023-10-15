@@ -61,7 +61,7 @@ def upload_file():
         transcribe = boto3.client('transcribe', region_name='ap-northeast-2')
         transcribe.start_transcription_job(
             TranscriptionJobName=filename,
-            Media={'MediaFileUri': f"s3://graduate1/{filename}"},
+            Media={'MediaFileUri': f"s3://test/{filename}"},
             MediaFormat=os.path.splitext(filename)[1][1:],
             LanguageCode='ko-KR'
         )
