@@ -1,5 +1,5 @@
 """
-참조 스크립트, 가설 스크립트의 wer 를 막대그래프가 아닌, 꺾은선 그래프로 표현. 
+참조 스크립트, 가설 스크립트의 wer 를 막대그래프로 표현. 
 """
 
 import numpy as np
@@ -55,8 +55,8 @@ for file_name in files_list:
     wer_scores.append(wer_score)
 
 # WER 시각화 
-plt.plot(files_list , wer_scores , marker='o')
-plt.ylim(0,max(wer_scores)*2)
+plt.bar(files_list , wer_scores)
+plt.ylim(0,60)
 plt.ylabel('Error Rate (%)')
 plt.title('Word Error Rate')
 plt.show()
