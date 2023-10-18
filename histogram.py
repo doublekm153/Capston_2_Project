@@ -11,15 +11,12 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# Load the two dataframes
 df_fix = pd.read_csv('C:\\Users\\USER\\Desktop\\test\\5\\fix_33.csv')
 df_transcript = pd.read_csv('C:\\Users\\USER\\Desktop\\test\\5\\transcript_times_33.csv', encoding='cp949')
 
-# Create new columns in df_fix for the sentence each word belongs to and its start time
 df_fix['sentence'] = None
 df_fix['sentence_start_time'] = None
 
-# Assign each word to a sentence and its start time based on the word's start and end times
 for i, row in df_fix.iterrows():
     for j, sent_row in df_transcript.iterrows():
         if row['start_time'] >= sent_row['Start_Time'] and row['end_time'] <= sent_row['End_Time']:
@@ -27,10 +24,8 @@ for i, row in df_fix.iterrows():
             df_fix.at[i, 'sentence_start_time'] = sent_row['Start_Time']
             break
 
-# Count the number of error words per sentence start time
 error_counts_per_sentence_start_time = df_fix['sentence_start_time'].value_counts()
 
-# Plot histogram with larger size and rotated x-labels
 plt.figure(figsize=(15,8))  
 ax = error_counts_per_sentence_start_time.sort_index().plot(kind='bar')
 plt.title('Frequency of Errors per Sentence Start Time')

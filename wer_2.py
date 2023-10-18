@@ -37,9 +37,7 @@ def calculate_wer(reference, hypothesis):
     
     return wer_score
 
-# File list - Add your files here.
-files_list=['test_11','test_22', 'test_33'] # example file names
-
+files_list=['test_11','test_22', 'test_33'] 
 wer_scores=[]
 for file_name in files_list:
     
